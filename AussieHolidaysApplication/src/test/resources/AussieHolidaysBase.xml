@@ -1,0 +1,51 @@
+<aussieHolidays>
+	<year>2022</year>
+	<state>
+		<name>QLD</name>
+		<term>
+			<num>One</num>
+			<startDate>dd/MM/yyyy</startDate>
+			<endDate>dd/MM/yyyy</endDate>
+		</term>
+		<term>
+			<num>Two</num>
+			<startDate>dd/MM/yyyy</startDate>
+			<endDate>dd/MM/yyyy</endDate>
+		</term>
+		<term>
+			<num>Three</num>
+			<startDate>dd/MM/yyyy</startDate>
+			<endDate>dd/MM/yyyy</endDate>
+		</term>
+		<term>
+			<num>Four</num>
+			<startDate>dd/MM/yyyy</startDate>
+			<endDate>dd/MM/yyyy</endDate>
+		</term>
+		<holiday name="New Year's Day" date="03/01/2022"></holiday>
+		<!-- list all holidays here -->
+		<holiday name="Christmas Day" date="27/12/2022"></holiday>
+	</state>
+	<!-- fill in states as above -->
+	<state>
+		<name>NSW</name>
+	</state>
+	<state>
+		<name>VIC</name>
+	</state>
+	<state>
+		<name>TAS</name>
+	</state>
+	<state>
+		<name>ACT</name>
+	</state>
+	<state>
+		<name>SA</name>
+	</state>
+	<state>
+		<name>NT</name>
+	</state>
+	<state>
+		<name>WA</name>
+	</state>
+</aussieHolidays>

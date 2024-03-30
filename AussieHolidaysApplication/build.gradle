@@ -1,0 +1,50 @@
+plugins {
+    // Apply the groovy plugin to add support for Groovy
+    id 'groovy'
+
+    // Apply the application plugin to add support for building a CLI application.
+    id 'application'
+    
+    id 'eclipse'
+}
+
+repositories {
+	mavenLocal()
+    // Use jcenter for resolving dependencies.
+    // You can declare any Maven/Ivy/file repository here.
+    jcenter()
+}
+
+dependencies {
+	// Use the latest Groovy version for building this library
+	implementation 'org.codehaus.groovy:groovy-all:3.0.9'
+
+	// Use the awesome Spock testing and specification framework
+	testImplementation 'org.spockframework:spock-core:2.0-groovy-3.0'
+}
+
+sourceCompatibility=18
+targetCompatibility=18
+
+application {
+    // Define the main class for the application.
+    mainClassName = 'com.wadhams.aussie.holidays.app.AussieHolidaysApp'
+}
+
+startScripts {
+	doLast {
+		def windowsScriptFile = file getWindowsScript()
+		//Add base directory to classpath so the Appliaction can locate file resources
+		windowsScriptFile.text = windowsScriptFile.text.replace('CLASSPATH=', 'CLASSPATH=.;')
+	}
+}
+
+applicationDistribution.from("bat") {
+	into "$executableDir"
+	include "*.bat"
+}
+
+applicationDistribution.from("src/test/resources") {
+	into "$executableDir"
+	include "AussieHolidaysBase.xml"
+}
