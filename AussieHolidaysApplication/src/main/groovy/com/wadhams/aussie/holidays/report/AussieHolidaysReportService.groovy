@@ -92,7 +92,7 @@ class AussieHolidaysReportService {
 					stateName = "${s.name} "	//pad right with space
 				}
 				
-				termHolidays.each {ld ->
+				termHolidaysSorted.each {ld ->
 					if (s.termHolidays[index].contains(ld)) {
 						pw.print " ${stateName}  "
 					}
@@ -192,7 +192,7 @@ class AussieHolidaysReportService {
 				String stateName = s.name
 				
 				pw.println '<tr align="center">'
-				termHolidays.each {ld ->
+				termHolidaysSorted.each {ld ->
 					if (s.termHolidays[index].contains(ld)) {
 						pw.print "<td>${stateName}</td>"
 					}
