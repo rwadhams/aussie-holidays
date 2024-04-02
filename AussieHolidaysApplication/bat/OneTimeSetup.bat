@@ -1,6 +1,8 @@
 @echo off
-REM OneTimeSetup for DeDup App
+REM OneTimeSetup for Aussie Holidays App
 
-:: create the out folder if it doesn't exist
+:: create the backup, out and mobile folders if they doesn't exist
 
+mkdir backup
 mkdir out
+mkdir mobile
