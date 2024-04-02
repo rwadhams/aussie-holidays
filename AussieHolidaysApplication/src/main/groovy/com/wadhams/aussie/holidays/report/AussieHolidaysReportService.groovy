@@ -83,16 +83,13 @@ class AussieHolidaysReportService {
 	
 			termHolidaysSorted.each {ld ->
 				pw.print "${ld.format(ddmm)} "
-			}
-			pw.println ''
-			
-			stateDTOList.each {s ->
-				String stateName = s.name
-				if (s.name.size() == 2) {
-					stateName = "${s.name} "	//pad right with space
-				}
 				
-				termHolidaysSorted.each {ld ->
+				stateDTOList.each {s ->
+					String stateName = s.name
+					if (s.name.size() == 2) {
+						stateName = "${s.name} "	//pad right with space
+					}
+					//more here...
 					if (s.termHolidays[index].contains(ld)) {
 						pw.print " ${stateName}  "
 					}
@@ -102,7 +99,6 @@ class AussieHolidaysReportService {
 				}
 				pw.println ''
 			}
-			pw.println ''
 		}
 		pw.println ''
 	}
@@ -112,7 +108,6 @@ class AussieHolidaysReportService {
 		DateTimeFormatter ddmmyyyyFormatter = DateTimeFormatter.ofPattern('dd/MM/yyyy')
 		pw.println '<html>'
 		pw.println "<b>Holidays reported by state for $year</b>"
-		pw.println '</br>'
 		stateDTOList.each {s ->
 			pw.println s.name
 			pw.println '<table border="1">'
@@ -131,7 +126,6 @@ class AussieHolidaysReportService {
 		DateTimeFormatter ddmmyyyyFormatter = DateTimeFormatter.ofPattern('dd/MM/yyyy')
 		pw.println '<html>'
 		pw.println "<b>Holidays reported by date for $year</b>"
-		pw.println '</br>'
 
 		//build map keyed by LocalDate		
 		Map<LocalDate, Map<String, List>> dateMap = [:] as TreeMap
@@ -170,11 +164,10 @@ class AussieHolidaysReportService {
 
 		pw.println '<html>'
 		pw.println "<b>School Holidays for $year</b>"
-		pw.println '</br>'
 		
 		List<String> holidayNameList = ['BeforeSchoolYear','Autumn School Holidays','Winter School Holidays','Spring School Holidays','AfterSchoolYear']
 		holidayNameList.size().times {index ->
-			pw.println holidayNameList[index]
+			pw.println "<table border=\"0\"><tr><td>${holidayNameList[index]}</td></tr></table>"
 			pw.println '<table border="1">'
 			Set<LocalDate> termHolidays = []
 			stateDTOList.each {s ->
@@ -182,17 +175,13 @@ class AussieHolidaysReportService {
 			}
 			List<LocalDate> termHolidaysSorted = termHolidays.sort()
 	
-			pw.println '<tr align="center">'
 			termHolidaysSorted.each {ld ->
+				pw.print '<tr align="center">'
 				pw.print "<td>${ld.format(ddmm)}</td>"
-			}
-			pw.println '</tr>'
-			
-			stateDTOList.each {s ->
-				String stateName = s.name
 				
-				pw.println '<tr align="center">'
-				termHolidaysSorted.each {ld ->
+				stateDTOList.each {s ->
+					String stateName = s.name
+					
 					if (s.termHolidays[index].contains(ld)) {
 						pw.print "<td>${stateName}</td>"
 					}
@@ -206,4 +195,5 @@ class AussieHolidaysReportService {
 		}
 		pw.println '</html>'
 	}
+	
 }
